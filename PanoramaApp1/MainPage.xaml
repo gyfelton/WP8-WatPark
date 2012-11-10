@@ -46,19 +46,21 @@
             <phone:PanoramaItem Header="UW Parking Info">
                 <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
                     <TextBlock Canvas.Left="18" TextWrapping="Wrap" Height="58" Width="392" FontSize="33" Text="Parking Lot N, behind M3"/>
-                    <TextBlock Name="slots_num_text_box_n" Canvas.Left="49" TextWrapping="Wrap" Text="78 Lots Available" Height="45" Width="361" FontSize="30" Canvas.Top="58"/>
+                    <TextBlock Name="slots_num_text_box_n" Canvas.Left="49" TextWrapping="Wrap" Text="Loading..." Height="45" Width="361" FontSize="30" Canvas.Top="58"/>
                     <TextBlock Canvas.Left="18" TextWrapping="Wrap" Height="58" Width="392" FontSize="33" Canvas.Top="122" Text="Parking Lot C, across DP"/>
-                    <TextBlock Name="slots_num_text_box_c" Canvas.Left="49" TextWrapping="Wrap" Text="78 Lots Available" Height="45" Width="361" FontSize="30" Canvas.Top="180"/>
+                    <TextBlock Name="slots_num_text_box_c" Canvas.Left="49" TextWrapping="Wrap" Text="Loading..." Height="45" Width="361" FontSize="30" Canvas.Top="180"/>
                     <TextBlock Canvas.Left="18" TextWrapping="Wrap" Height="58" Width="392" FontSize="33" Text="Parking Lot W, near CIF" Canvas.Top="245"/>
-                    <TextBlock Name="slots_num_text_box_w" Canvas.Left="49" TextWrapping="Wrap" Text="78 Lots Available" Height="45" Width="361" FontSize="30" Canvas.Top="303"/>
+                    <TextBlock Name="slots_num_text_box_w" Canvas.Left="49" TextWrapping="Wrap" Text="Loading..." Height="45" Width="361" FontSize="30" Canvas.Top="303"/>
                 </Canvas>
             </phone:PanoramaItem>
 
             <phone:PanoramaItem Header="Parking Lot N">
                 <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
                     <Image Height="281" Width="393" Canvas.Left="17" Source="/Assets/parking_lot_c.png" Stretch="UniformToFill" />
-                    <TextBlock Name="operation_text_box_n"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
-                    <TextBlock x:Name="percentage_text_box_n" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
+                    <TextBlock Name="operation_text_box_n"  TextWrapping="Wrap" Text="Open from 6:00AM to 3:00AM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
+                    <TextBlock x:Name="percentage_text_box_n" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17">
+                    	<Run FontSize="30" Text="Loading..."/>
+                    </TextBlock>
                 </Canvas>
 
             </phone:PanoramaItem>
@@ -66,8 +68,10 @@
             <phone:PanoramaItem Header="Parking Lot C">
                 <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
                     <Image Height="281" Width="393" Canvas.Left="17" Source="/Assets/parking_lot_c.png" Stretch="UniformToFill" />
-                    <TextBlock Name="operation_text_box_c"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
-                    <TextBlock x:Name="percentage_text_box_c" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
+                    <TextBlock Name="operation_text_box_c"  TextWrapping="Wrap" Text="Open from 6:00AM to 3:00AM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
+                    <TextBlock x:Name="percentage_text_box_c" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17">
+                    	<Run FontSize="30" Text="Loading..."/>
+                    </TextBlock>
                 </Canvas>
 
             </phone:PanoramaItem>
@@ -75,8 +79,10 @@
             <phone:PanoramaItem Header="Parking Lot W">
                 <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
                     <Image Height="281" Width="393" Canvas.Left="17" Source="/Assets/parking_lot_c.png" Stretch="UniformToFill" />
-                    <TextBlock Name="operation_text_box_w"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
-                    <TextBlock x:Name="percentage_text_box_w" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
+                    <TextBlock Name="operation_text_box_w"  TextWrapping="Wrap" Text="Open from 6:00AM to 3:00AM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
+                    <TextBlock x:Name="percentage_text_box_w" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17">
+                    	<Run FontSize="30" Text="Loading..."/>
+                    </TextBlock>
                 </Canvas>
 
             </phone:PanoramaItem>
