@@ -96,10 +96,11 @@ namespace UWAPIWrapper
         //     None for now
 
         public event onGetResponseFromRequest responseCompletionHandler;
+        public event onFailToGetResponse requestFailedHandler;
 
         private string method_name;
 
-        public void requestDataInJSONWithQuery(string query, string methodName, string APIKey, onFailToGetResponse failHandler)
+        public void requestDataInJSONWithQuery(string query, string methodName, string APIKey)
         {
             method_name = methodName;
 
@@ -115,9 +116,9 @@ namespace UWAPIWrapper
             if (!Uri.TryCreate(test, UriKind.Absolute, out resourceUri))
             {
                 Debug.WriteLine("ERROR! Invalid request, please check your parameter");
-                if (failHandler != null)
+                if (requestFailedHandler != null)
                 {
-                    failHandler(this, methodName, null);
+                    requestFailedHandler(this, methodName, null);
                 }
                 return;
             }
@@ -143,9 +144,9 @@ namespace UWAPIWrapper
             catch (Exception e)
             {
                 Debug.WriteLine("WARNING! Received Exception!");
-                if (failHandler != null)
+                if (requestFailedHandler != null)
                 {
-                    failHandler(this, methodName, e);
+                    requestFailedHandler(this, methodName, e);
                 }
             }
             finally
@@ -167,26 +168,37 @@ namespace UWAPIWrapper
             //}
         }
 
-        public void requestDataInJSONWithoutQuery(string methodName, string APIKey, onFailToGetResponse failHandler)
+        public void requestDataInJSONWithoutQuery(string methodName, string APIKey)
         {
-            this.requestDataInJSONWithQuery(null, methodName, APIKey, failHandler);
+            this.requestDataInJSONWithQuery(null, methodName, APIKey);
         }
 
         private async void HandleGenericResponse(IAsyncResult asyncResult)
         {
-            // get the state information
-            RequestState state = (RequestState)asyncResult.AsyncState;
-            HttpWebRequest forecastRequest = (HttpWebRequest)state.AsyncRequest;
+            try
+            {
+                // get the state information
+                RequestState state = (RequestState)asyncResult.AsyncState;
+                HttpWebRequest forecastRequest = (HttpWebRequest)state.AsyncRequest;
 
-            // end the async request
-            state.AsyncResponse = (HttpWebResponse)forecastRequest.EndGetResponse(asyncResult);
+                // end the async request
+                state.AsyncResponse = (HttpWebResponse)forecastRequest.EndGetResponse(asyncResult);
 
-            Stream responseBodyAsSteream = state.AsyncResponse.GetResponseStream();
-            StreamReader reader = new StreamReader(responseBodyAsSteream);
-            string responseBodyAsText = await reader.ReadToEndAsync();
-            JObject result = JsonConvert.DeserializeObject<JObject>(responseBodyAsText);
+                Stream responseBodyAsSteream = state.AsyncResponse.GetResponseStream();
+                StreamReader reader = new StreamReader(responseBodyAsSteream);
+                string responseBodyAsText = await reader.ReadToEndAsync();
+                JObject result = JsonConvert.DeserializeObject<JObject>(responseBodyAsText);
 
-            responseCompletionHandler(this, method_name, result);
+                responseCompletionHandler(this, method_name, result);
+            }
+            catch (Exception e)
+            {
+                Debug.WriteLine("WARNING! Received Exception!");
+                if (requestFailedHandler != null)
+                {
+                    requestFailedHandler(this, method_name, e);
+                };
+            }
         }
     }
 

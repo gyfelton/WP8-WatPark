@@ -15,6 +15,41 @@ namespace PanoramaApp1
 {
     public partial class MainPage : PhoneApplicationPage
     {
+        private void beginRequestingData()
+        {
+            bottom_progress_bar.Visibility = System.Windows.Visibility.Visible;
+            refresh_button.IsEnabled = false;
+
+            GenericRequest req = new GenericRequest();
+            req.requestDataInJSONWithoutQuery("WatPark", "cc7004c25526969882ff31eddb1d18f4");
+            req.responseCompletionHandler += new GenericRequest.onGetResponseFromRequest(jsonParseSuccessful);
+            req.requestFailedHandler += new GenericRequest.onFailToGetResponse(jsonParseFail);
+        }
+
+        private void showErrorMessageBox()
+        {
+            MessageBox.Show("Please try again later.", "No Network Connection", MessageBoxButton.OK);
+            refresh_button.IsEnabled = true;
+            bottom_progress_bar.Visibility = System.Windows.Visibility.Collapsed;
+        }
+
+        private void showAboutMessageBox()
+        {
+            MessageBox.Show("WatPark for WP8, version 1.0.0\n"
+                           + "2012 © Molly Luo, Elton Gao\n\n"
+                           + "Parking Lots Data from\n"
+                           + "UWaterloo Open Data Initiative\n"
+                           + "\tapi.uwaterloo.ca\n"
+                           + "with\n"
+                           + "\tWatPark.ca\n"
+                           + "Thank you for your guys' hard work!\n\n"
+                           + "Note: This app is not affiliated with University of Waterloo or WatPark.ca"
+                           + "\n\nThis app uses UWAPIWrapper\n"
+                           + "Created by Elton Gao, UW Mobile Club\n"
+                           + "Open sourced at github/uwmobile"
+                           , "About WatPark", MessageBoxButton.OK);
+        }
+
         // Constructor
         public MainPage()
         {
@@ -22,10 +57,6 @@ namespace PanoramaApp1
 
             // Set the data context of the listbox control to the sample data
             DataContext = App.ViewModel;
-
-            GenericRequest req = new GenericRequest();
-            req.requestDataInJSONWithoutQuery("WatPark", "cc7004c25526969882ff31eddb1d18f4", jsonParseFail);
-            req.responseCompletionHandler += new GenericRequest.onGetResponseFromRequest(jsonParseSuccessful);
         }
 
         private void jsonParseSuccessful(GenericRequest req, string method_name, JObject obj)
@@ -72,11 +103,23 @@ namespace PanoramaApp1
             catch (NullReferenceException e)
             {
                 Debug.WriteLine("ERROR! NULL pointer exception!");
+                Deployment.Current.Dispatcher.BeginInvoke(() =>
+                {
+                    showErrorMessageBox();
+                });
             }
+        }
+
+        private void setProgressBarInvisible()
+        {
+            refresh_button.IsEnabled = true;
+            bottom_progress_bar.Visibility = System.Windows.Visibility.Collapsed;
         }
 
         private void setText_C(string percentage_filled, string opentime, string closetime, string capacity)
         {
+            setProgressBarInvisible();
+
             int count = (100 - Convert.ToInt32(percentage_filled)) * Convert.ToInt32(capacity) / 100;
             slots_num_text_box_c.Text = Convert.ToString(count) + " Lots Available";
             percentage_text_box_c.Text = slots_num_text_box_c.Text + "\n" + capacity + " in Total";// "Percentage Filled: " + percentage_filled + "%";
@@ -85,6 +128,8 @@ namespace PanoramaApp1
 
         private void setText_W(string percentage_filled, string opentime, string closetime, string capacity)
         {
+            setProgressBarInvisible();
+
             int count = (100 - Convert.ToInt32(percentage_filled)) * Convert.ToInt32(capacity) / 100;
             slots_num_text_box_w.Text = Convert.ToString(count) + " Lots Available";
             percentage_text_box_w.Text = slots_num_text_box_w.Text + "\n" + capacity + " in Total";// "Percentage Filled: " + percentage_filled + "%";
@@ -93,6 +138,8 @@ namespace PanoramaApp1
 
         private void setText_N(string percentage_filled, string opentime, string closetime, string capacity)
         {
+            setProgressBarInvisible();
+
             int count = (100 - Convert.ToInt32(percentage_filled)) * Convert.ToInt32(capacity) / 100;
             slots_num_text_box_n.Text = Convert.ToString(count) + " Lots Available";
             percentage_text_box_n.Text = slots_num_text_box_n.Text + "\n" + capacity + " in Total";// "Percentage Filled: " + percentage_filled + "%";
@@ -102,17 +149,31 @@ namespace PanoramaApp1
         private void jsonParseFail(GenericRequest request, string method_name, Exception e)
         {
             Debug.WriteLine("ERROR! Request failed for some reason!");
+            Deployment.Current.Dispatcher.BeginInvoke(() =>
+            {
+                showErrorMessageBox();
+            });
         }
 
         // Load data for the ViewModel Items
         protected override void OnNavigatedTo(NavigationEventArgs e)
         {
-            if (!App.ViewModel.IsDataLoaded)
-            {
-                App.ViewModel.LoadData();
-            }
+            //if (!App.ViewModel.IsDataLoaded)
+            //{
+            //    App.ViewModel.LoadData();
+            //}
 
-            
+            beginRequestingData();
+        }
+
+        private void onRefreshClicked(object sender, RoutedEventArgs e)
+        {
+            beginRequestingData();
+        }
+
+        private void onAboutClicked(object sender, RoutedEventArgs e)
+        {
+            showAboutMessageBox();
         }
     }
 }
