@@ -1,7 +1,7 @@
 ﻿<?xml version="1.0" encoding="utf-8"?>
 <Deployment xmlns="http://schemas.microsoft.com/windowsphone/2012/deployment" AppPlatformVersion="8.0">
   <DefaultLanguage xmlns="" code="en-US" />
-  <App xmlns="" ProductID="{52a760db-1d86-4927-af06-76b7c290e698}" Title="WatPark" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="Molly Luo" Description="A Simple app showing current parking lot usage for students" Publisher="Miao L." PublisherID="{b3dbf506-2e29-49db-af6b-9987b90f5f93}">
+  <App xmlns="" ProductID="{52a760db-1d86-4927-af06-76b7c290e698}" Title="PanoramaApp1" RuntimeType="Silverlight" Version="1.0.0.0" Genre="apps.normal" Author="PanoramaApp1 author" Description="Sample description" Publisher="PanoramaApp1" PublisherID="{b3dbf506-2e29-49db-af6b-9987b90f5f93}">
     <IconPath IsRelative="true" IsResource="false">Assets\ApplicationIcon.png</IconPath>
     <Capabilities>
       <Capability Name="ID_CAP_NETWORKING" />
@@ -9,32 +9,29 @@
       <Capability Name="ID_CAP_MEDIALIB_PLAYBACK" />
       <Capability Name="ID_CAP_SENSORS" />
       <Capability Name="ID_CAP_WEBBROWSERCOMPONENT" />
+      <Capability Name="ID_CAP_MAP" />
     </Capabilities>
     <Tasks>
       <DefaultTask Name="_default" NavigationPage="MainPage.xaml" />
     </Tasks>
     <Tokens>
       <PrimaryToken TokenID="PanoramaApp1Token" TaskName="_default">
-        <TemplateIconic>
-          <SmallImageURI IsRelative="true" IsResource="false">FlipCycleTileSmall.png</SmallImageURI>
+        <TemplateFlip>
+          <SmallImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileSmall.png</SmallImageURI>
           <Count>0</Count>
-          <IconImageURI IsRelative="true" IsResource="false">FlipCycleTileMedium.png</IconImageURI>
-          <Title>
-          </Title>
-          <Message>
-          </Message>
-          <BackgroundColor>
-          </BackgroundColor>
-          <HasLarge>false</HasLarge>
-          <LargeContent1>
-          </LargeContent1>
-          <LargeContent2>
-          </LargeContent2>
-          <LargeContent3>
-          </LargeContent3>
-          <DeviceLockImageURI IsRelative="true" IsResource="false">
+          <BackgroundImageURI IsRelative="true" IsResource="false">Assets\Tiles\FlipCycleTileMedium.png</BackgroundImageURI>
+          <Title>PanoramaApp1</Title>
+          <BackContent>
+          </BackContent>
+          <BackBackgroundImageURI>
+          </BackBackgroundImageURI>
+          <BackTitle>
+          </BackTitle>
+          <DeviceLockImageURI>
           </DeviceLockImageURI>
-        </TemplateIconic>
+          <HasLarge>
+          </HasLarge>
+        </TemplateFlip>
       </PrimaryToken>
     </Tokens>
     <ScreenResolutions>

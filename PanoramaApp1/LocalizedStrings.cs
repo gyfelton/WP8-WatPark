@@ -1,6 +1,6 @@
-﻿using WatPark.Resources;
+﻿using PanoramaApp1.Resources;
 
-namespace WatPark
+namespace PanoramaApp1
 {
     /// <summary>
     /// Provides access to string resources.

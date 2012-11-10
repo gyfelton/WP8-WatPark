@@ -8,7 +8,7 @@ using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Media.Animation;
 
-namespace WatPark.ViewModels
+namespace PanoramaApp1.ViewModels
 {
     public class ItemViewModel : INotifyPropertyChanged
     {

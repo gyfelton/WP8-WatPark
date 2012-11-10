@@ -1,9 +1,9 @@
 ﻿using System;
 using System.Collections.ObjectModel;
 using System.ComponentModel;
-using WatPark.Resources;
+using PanoramaApp1.Resources;
 
-namespace WatPark.ViewModels
+namespace PanoramaApp1.ViewModels
 {
     public class MainViewModel : INotifyPropertyChanged
     {

@@ -1,7 +1,7 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Express 2012 for Windows Phone
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WatPark", "PanoramaApp1\WatPark.csproj", "{52A760DB-1D86-4927-AF06-76B7C290E698}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "PanoramaApp1", "PanoramaApp1\PanoramaApp1.csproj", "{52A760DB-1D86-4927-AF06-76B7C290E698}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
