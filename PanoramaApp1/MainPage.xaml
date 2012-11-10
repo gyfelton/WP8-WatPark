@@ -1,11 +1,12 @@
 ﻿<phone:PhoneApplicationPage
-    x:Class="PanoramaApp1.MainPage"
     xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
     xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
     xmlns:phone="clr-namespace:Microsoft.Phone.Controls;assembly=Microsoft.Phone"
     xmlns:shell="clr-namespace:Microsoft.Phone.Shell;assembly=Microsoft.Phone"
     xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
     xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+    xmlns:maps="clr-namespace:Microsoft.Phone.Maps.Controls;assembly=Microsoft.Phone.Maps"
+    x:Class="PanoramaApp1.MainPage"
     mc:Ignorable="d"
     d:DataContext="{d:DesignData SampleData/MainViewModelSampleData.xaml}"
     FontFamily="{StaticResource PhoneFontFamilyNormal}"
@@ -36,21 +37,30 @@
             CurrentUICulture of the app at run time.
          -->
 
-         <!--Panorama control-->
+        <!--Panorama control-->
         <phone:Panorama Title="WatPark">
             <phone:Panorama.Background>
                 <ImageBrush ImageSource="/PanoramaApp1;component/Assets/PanoramaBackground.png"/>
             </phone:Panorama.Background>
 
-            <!--Panorama item one-->
             <phone:PanoramaItem Header="Parking Lot C">
-                
-                
+                <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
+                   
+                </Canvas>
+            </phone:PanoramaItem>
+            
+            <phone:PanoramaItem Header="Parking Lot C">
+                <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
+                    <Image Height="281" Width="393" Canvas.Left="17" Source="/Assets/parking_lot_c.png" Stretch="UniformToFill" />
+                    <TextBlock Name="operation_text_box"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
+                    <TextBlock x:Name="percentage_text_box" TextWrapping="Wrap" Canvas.Top="368" Height="78" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
+                </Canvas>
+
             </phone:PanoramaItem>
 
             <!--Panorama item two-->
             <phone:PanoramaItem>
-                <!--Double line list with image placeholder and text wrapping using a floating header that scrolls with the content-->
+                <!--Double d list with image placeholder and text wrapping using a floating header that scrolls with the content-->
                 <phone:LongListSelector Margin="0,-38,-22,2" ItemsSource="{Binding Items}">
                     <phone:LongListSelector.ListHeaderTemplate>
                         <DataTemplate>

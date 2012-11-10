@@ -45,14 +45,25 @@ namespace PanoramaApp1
                     string curr_count = (string)parking_lot["LatestCount"];
                     string time_polled = (string)parking_lot["TimePolled"];
                     //int capacity = parking_lot["Capacity"];
-                    //int percentage_filled = (int)parking_lot["PercentFilled"];
+                    string percentage_filled = (string)parking_lot["PercentFilled"];
                     Debug.WriteLine(lot_name);
+                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    {
+                        setText(percentage_filled, opentime, closetime);
+                    });  
                 }
             }
             catch (NullReferenceException e)
             {
                 Debug.WriteLine("ERROR! NULL pointer exception!");
             }
+        }
+
+        private void setText(string percentage_filled, string opentime, string closetime)
+        {
+            percentage_text_box.Text = "Percentage Filled: " + percentage_filled + "%";
+            operation_text_box.Text = "Open From: " + opentime + " to " + closetime;
+            progress_bar_c.Value = Convert.ToInt32(percentage_filled);
         }
 
         private void jsonParseFail(GenericRequest request, string method_name, Exception e)
@@ -67,6 +78,8 @@ namespace PanoramaApp1
             {
                 App.ViewModel.LoadData();
             }
+
+            
         }
     }
 }
