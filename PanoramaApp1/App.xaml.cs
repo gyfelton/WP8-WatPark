@@ -8,10 +8,10 @@ using System.Windows.Markup;
 using System.Windows.Navigation;
 using Microsoft.Phone.Controls;
 using Microsoft.Phone.Shell;
-using PanoramaApp1.Resources;
-using PanoramaApp1.ViewModels;
+using WatPark.Resources;
+using WatPark.ViewModels;
 
-namespace PanoramaApp1
+namespace WatPark
 {
     public partial class App : Application
     {
