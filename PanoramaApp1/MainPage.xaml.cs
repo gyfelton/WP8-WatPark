@@ -37,20 +37,36 @@ namespace PanoramaApp1
                 JArray parkings = (JArray)response["result"];
                 foreach (JContainer parking_lot in parkings)
                 {
-
                     string lot_name = (string)parking_lot["LotName"];
                     string latlong_combine = (string)parking_lot["LatLong"];
                     string opentime = (string)parking_lot["OpenTime"];
                     string closetime = (string)parking_lot["CloseTime"];
                     string curr_count = (string)parking_lot["LatestCount"];
                     string time_polled = (string)parking_lot["TimePolled"];
-                    //int capacity = parking_lot["Capacity"];
+                    string capacity = (string)parking_lot["Capacity"];
                     string percentage_filled = (string)parking_lot["PercentFilled"];
                     Debug.WriteLine(lot_name);
-                    Deployment.Current.Dispatcher.BeginInvoke(() =>
+                    if (lot_name.CompareTo("C") == 0)
                     {
-                        setText(percentage_filled, opentime, closetime);
-                    });  
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            setText_C(percentage_filled, opentime, closetime, capacity);
+                        });
+                    }
+                    else if (lot_name.CompareTo("W") == 0)
+                    {
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            setText_W(percentage_filled, opentime, closetime, capacity);
+                        });
+                    }
+                    else if (lot_name.CompareTo("N") == 0)
+                    {
+                        Deployment.Current.Dispatcher.BeginInvoke(() =>
+                        {
+                            setText_N(percentage_filled, opentime, closetime, capacity);
+                        });
+                    }
                 }
             }
             catch (NullReferenceException e)
@@ -59,11 +75,28 @@ namespace PanoramaApp1
             }
         }
 
-        private void setText(string percentage_filled, string opentime, string closetime)
+        private void setText_C(string percentage_filled, string opentime, string closetime, string capacity)
         {
-            percentage_text_box.Text = "Percentage Filled: " + percentage_filled + "%";
-            operation_text_box.Text = "Open From: " + opentime + " to " + closetime;
-            progress_bar_c.Value = Convert.ToInt32(percentage_filled);
+            int count = (100 - Convert.ToInt32(percentage_filled)) * Convert.ToInt32(capacity) / 100;
+            slots_num_text_box_c.Text = Convert.ToString(count) + " Lots Available";
+            percentage_text_box_c.Text = slots_num_text_box_c.Text + "\n" + capacity + " in Total";// "Percentage Filled: " + percentage_filled + "%";
+            operation_text_box_c.Text = "Open From: " + opentime + " to " + closetime;
+        }
+
+        private void setText_W(string percentage_filled, string opentime, string closetime, string capacity)
+        {
+            int count = (100 - Convert.ToInt32(percentage_filled)) * Convert.ToInt32(capacity) / 100;
+            slots_num_text_box_w.Text = Convert.ToString(count) + " Lots Available";
+            percentage_text_box_w.Text = slots_num_text_box_w.Text + "\n" + capacity + " in Total";// "Percentage Filled: " + percentage_filled + "%";
+            operation_text_box_w.Text = "Open From: " + opentime + " to " + closetime;
+        }
+
+        private void setText_N(string percentage_filled, string opentime, string closetime, string capacity)
+        {
+            int count = (100 - Convert.ToInt32(percentage_filled)) * Convert.ToInt32(capacity) / 100;
+            slots_num_text_box_n.Text = Convert.ToString(count) + " Lots Available";
+            percentage_text_box_n.Text = slots_num_text_box_n.Text + "\n" + capacity + " in Total";// "Percentage Filled: " + percentage_filled + "%";
+            operation_text_box_n.Text = "Open From: " + opentime + " to " + closetime;
         }
 
         private void jsonParseFail(GenericRequest request, string method_name, Exception e)

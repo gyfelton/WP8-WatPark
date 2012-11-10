@@ -43,73 +43,44 @@
                 <ImageBrush ImageSource="/PanoramaApp1;component/Assets/PanoramaBackground.png"/>
             </phone:Panorama.Background>
 
-            <phone:PanoramaItem Header="Parking Lot C">
+            <phone:PanoramaItem Header="UW Parking Info">
                 <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
-                   
+                    <TextBlock Canvas.Left="18" TextWrapping="Wrap" Height="58" Width="392" FontSize="33" Text="Parking Lot N, behind M3"/>
+                    <TextBlock Name="slots_num_text_box_n" Canvas.Left="49" TextWrapping="Wrap" Text="78 Lots Available" Height="45" Width="361" FontSize="30" Canvas.Top="58"/>
+                    <TextBlock Canvas.Left="18" TextWrapping="Wrap" Height="58" Width="392" FontSize="33" Canvas.Top="122" Text="Parking Lot C, across DP"/>
+                    <TextBlock Name="slots_num_text_box_c" Canvas.Left="49" TextWrapping="Wrap" Text="78 Lots Available" Height="45" Width="361" FontSize="30" Canvas.Top="180"/>
+                    <TextBlock Canvas.Left="18" TextWrapping="Wrap" Height="58" Width="392" FontSize="33" Text="Parking Lot W, near CIF" Canvas.Top="245"/>
+                    <TextBlock Name="slots_num_text_box_w" Canvas.Left="49" TextWrapping="Wrap" Text="78 Lots Available" Height="45" Width="361" FontSize="30" Canvas.Top="303"/>
                 </Canvas>
+            </phone:PanoramaItem>
+
+            <phone:PanoramaItem Header="Parking Lot N">
+                <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
+                    <Image Height="281" Width="393" Canvas.Left="17" Source="/Assets/parking_lot_c.png" Stretch="UniformToFill" />
+                    <TextBlock Name="operation_text_box_n"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
+                    <TextBlock x:Name="percentage_text_box_n" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
+                </Canvas>
+
             </phone:PanoramaItem>
             
             <phone:PanoramaItem Header="Parking Lot C">
                 <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
                     <Image Height="281" Width="393" Canvas.Left="17" Source="/Assets/parking_lot_c.png" Stretch="UniformToFill" />
-                    <TextBlock Name="operation_text_box"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
-                    <TextBlock x:Name="percentage_text_box" TextWrapping="Wrap" Canvas.Top="368" Height="78" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
+                    <TextBlock Name="operation_text_box_c"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
+                    <TextBlock x:Name="percentage_text_box_c" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
                 </Canvas>
 
             </phone:PanoramaItem>
 
-            <!--Panorama item two-->
-            <phone:PanoramaItem>
-                <!--Double d list with image placeholder and text wrapping using a floating header that scrolls with the content-->
-                <phone:LongListSelector Margin="0,-38,-22,2" ItemsSource="{Binding Items}">
-                    <phone:LongListSelector.ListHeaderTemplate>
-                        <DataTemplate>
-                            <Grid Margin="12,0,0,38">
-                                <Grid.RowDefinitions>
-                                    <RowDefinition Height="Auto"/>
-                                    <RowDefinition Height="*"/>
-                                </Grid.RowDefinitions>
-                                <TextBlock Text="second item"
-                                           Style="{StaticResource PanoramaItemHeaderTextStyle}"
-                                           Grid.Row="0"/>
-                            </Grid>
-                        </DataTemplate>
-                    </phone:LongListSelector.ListHeaderTemplate>
-                    <phone:LongListSelector.ItemTemplate>
-                        <DataTemplate>
-                            <StackPanel Orientation="Horizontal" Margin="12,2,0,4" Height="105" Width="432">
-                                <!--Replace rectangle with image-->
-                                <Border BorderThickness="1" Width="99" Height="99" BorderBrush="#FFFFC700" Background="#FFFFC700"/>
-                                <StackPanel Width="311" Margin="8,-7,0,0">
-                                    <TextBlock Text="{Binding LineOne}" TextWrapping="Wrap" Margin="10,0" Style="{StaticResource PhoneTextExtraLargeStyle}" FontSize="{StaticResource PhoneFontSizeLarge}" />
-                                    <TextBlock Text="{Binding LineTwo}" TextWrapping="Wrap" Margin="10,-2,10,0" Style="{StaticResource PhoneTextSubtleStyle}" />
-                                </StackPanel>
-                            </StackPanel>
-                        </DataTemplate>
-                    </phone:LongListSelector.ItemTemplate>
-                </phone:LongListSelector>
-            </phone:PanoramaItem>
+            <phone:PanoramaItem Header="Parking Lot W">
+                <Canvas HorizontalAlignment="Left" Height="483" VerticalAlignment="Top" Width="420">
+                    <Image Height="281" Width="393" Canvas.Left="17" Source="/Assets/parking_lot_c.png" Stretch="UniformToFill" />
+                    <TextBlock Name="operation_text_box_w"  TextWrapping="Wrap" Text="Open from 6:00AM to 6:00PM" Canvas.Top="316" Height="39" Width="403" FontSize="26" Canvas.Left="17"/>
+                    <TextBlock x:Name="percentage_text_box_w" TextWrapping="Wrap" Canvas.Top="360" Height="113" Width="393" FontSize="38" Canvas.Left="17" Text="78 Lots Available"/>
+                </Canvas>
 
-            <!--Panorama item three-->
-            <phone:PanoramaItem Header="third item" Orientation="Horizontal">
-                <!--Double wide Panorama with large image placeholders-->
-                <Grid>
-                    <StackPanel Margin="0,4,16,0" Orientation="Vertical" VerticalAlignment="Top">
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal">
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                        </StackPanel>
-                        <StackPanel HorizontalAlignment="Left" Orientation="Horizontal" Margin="0,12,0,0">
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                            <Border Background="#FFFFC700" Height="173" Width="173" Margin="12,0,0,0"/>
-                        </StackPanel>
-                    </StackPanel>
-                </Grid>
             </phone:PanoramaItem>
+            
         </phone:Panorama>
 
         <!--Uncomment to see an alignment grid to help ensure your controls are
